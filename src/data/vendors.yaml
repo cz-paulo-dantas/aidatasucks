@@ -391,6 +391,28 @@
     consumed per request. No usage history endpoint, no billing export.
     Billing managed via Stripe portal with PDF invoices only.
 
+- name: Cursor AI
+  slug: cursorai
+  domain: generative
+  costApi: partial
+  usageApi: yes
+  billingExport: no
+  granularity: Per-request, per-model, per-user token and cost data
+
+  website: https://cursor.com
+  notes: >
+    Enterprise Admin API provides POST /teams/filtered-usage-events with
+    per-request granularity including user email, model, token counts
+    (input, output, cache read/write), cost in cents, and billing kind
+    (e.g. "Included in Business", "Usage-based"). POST /teams/spend
+    returns per-member spend totals for the current billing cycle.
+    GET /teams/groups returns billing group assignments for team-level
+    attribution. POST /teams/daily-usage-data provides daily aggregated
+    metrics. All endpoints use Basic Auth with an Enterprise API key.
+    Rate-limited to ~20 requests/minute. Max 30-day date range per
+    request. No billing export or scheduled data delivery. Costs are
+    reported in cents and must be converted to dollars. 
+
 # ------------------------------------
 # AI Infrastructure
 # ------------------------------------
